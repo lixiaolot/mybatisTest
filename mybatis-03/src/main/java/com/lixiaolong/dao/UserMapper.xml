@@ -4,7 +4,16 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace 绑定一个对应的dao/mapper接口-->
 <mapper namespace="com.lixiaolong.dao.UserMapper">
-    <select id="getUserById" parameterType="int" resultType="user">
+
+    <resultMap id="UserMap" type="User">
+<!--        column表示数据库里的字段，property为实体类的属性  结果集映射-->
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="password"/>
+    </resultMap>
+
+    <select id="getUserById" resultMap="UserMap">
         select * from mybatis.user where id =  #{id}
     </select>
+
 </mapper>

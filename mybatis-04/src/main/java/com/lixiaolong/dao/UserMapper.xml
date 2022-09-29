@@ -5,6 +5,7 @@
 <!--namespace 绑定一个对应的dao/mapper接口-->
 <mapper namespace="com.lixiaolong.dao.UserMapper">
 
+<!--    结果映射-->
     <resultMap id="UserMap" type="User">
 <!--        column表示数据库里的字段，property为实体类的属性  结果集映射-->
         <result column="id" property="id"/>
@@ -12,8 +13,17 @@
         <result column="pwd" property="password"/>
     </resultMap>
 
+
     <select id="getUserById" resultMap="UserMap">
         select * from mybatis.user where id =  #{id}
     </select>
 
+<!--    getUserByLimit 分页-->
+    <select id="getUserByLimit" parameterType="map" resultMap="UserMap">
+        select * from user limit #{startIndex} , #{pageSize}
+    </select>
+
+    <select id="getUserByRowBounds" resultMap="UserMap">
+        select * from user
+    </select>
 </mapper>
