@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--核心配置文件-->
+<configuration>
+<!--    引入配置文件-->
+    <properties resource="db.properties"/>
+    <settings>
+<!--        标准日志工厂-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+<!--        LOG4j-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+<!--        驼峰命名-->
+    </settings>
+
+<!--    别名-->
+    <typeAliases>
+<!--        实体类少的使用第一个-->
+<!--        <typeAlias type="com.lixiaolong.pojo.User" alias="User"/>-->
+
+<!--        实体类的包，小写字母为别名-->
+        <package name="com.lixiaolong.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper class="com.lixiaolong.dao.BlogMapper"/>
+    </mappers>
+
+
+</configuration>
